@@ -88,7 +88,8 @@ if not SSD_1B:
         cache_dir=cache_path,
     )
     pipe = DiffusionPipeline.from_pretrained(
-        "stabilityai/stable-diffusion-xl-base-1.0",
+        # "stabilityai/stable-diffusion-xl-base-1.0",
+        "stabilityai/sdxl-turbo",
         unet=unet,
         torch_dtype=torch.float16,
         variant="fp16",
@@ -303,4 +304,5 @@ if run_api:
 
     # demo.queue(max_size=32).launch()
     # Launch the Gradio app with multiple workers and debug mode enabled
-    demo.queue(max_size=32).launch(debug=True)
+    # demo.queue(max_size=32).launch(debug=True)# For Standard
+    demo.queue(max_size=32).launch(server_name="0.0.0.0", server_port=7860)  # Docker
